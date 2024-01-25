@@ -1,3 +1,6 @@
+import React from "react";
+import { StyleSheet, Text, View } from 'react-native';
+
 
 const SavedScreen = () => {
     return (
@@ -7,7 +10,7 @@ const SavedScreen = () => {
         alignItems: 'center',
         justifyContent: 'center',
       }}>
-        <Text>HomeScreen</Text>
+        <Text>SavedScreen</Text>
       </View>
     )
   }

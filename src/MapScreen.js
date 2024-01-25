@@ -1,5 +1,7 @@
+import React from "react";
+import { StyleSheet, Text, View } from 'react-native';
 
-const HomeScreen = () => {
+const MapScreen = () => {
     return (
       <View style={{
         flex: 1,
@@ -7,7 +9,7 @@ const HomeScreen = () => {
         alignItems: 'center',
         justifyContent: 'center',
       }}>
-        <Text>HomeScreen</Text>
+        <Text>MapScreen</Text>
       </View>
     )
   }

@@ -4,68 +4,15 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
+import HomeScreen from "./src/HomeScreen";
+import MapScreen from "./src/MapScreen";
+import SavedScreen from "./src/SavedScreen";
+import SettingsScreen from "./src/SettingsScreen";
+
+
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-
-// HomeScreen Component
-const HomeScreen = () => {
-  return (
-    <View style={{
-      flex: 1,
-      backgroundColor: '#e7e7e7',
-      alignItems: 'center',
-      justifyContent: 'center',
-    }}>
-      <Text>HomeScreen</Text>
-    </View>
-  )
-}
-
-
-// MapScreen Component
-const MapScreen = () => {
-  return (
-    <View style={{
-      flex: 1,
-      backgroundColor: '#e7e7e7',
-      alignItems: 'center',
-      justifyContent: 'center',
-    }}>
-      <Text>MapScreen</Text>
-    </View>
-  )
-}
-
-
-// SavedScreen Component
-const SavedScreen = () => {
-  return (
-    <View style={{
-      flex: 1,
-      backgroundColor: '#e7e7e7',
-      alignItems: 'center',
-      justifyContent: 'center',
-    }}>
-      <Text>SavedScreen</Text>
-    </View>
-  )
-}
-
-
-// SettingScreen Component
-const SettingsScreen = () => {
-  return (
-    <View style={{
-      flex: 1,
-      backgroundColor: '#e7e7e7',
-      alignItems: 'center',
-      justifyContent: 'center',
-    }}>
-      <Text>SettingsScreen</Text>
-    </View>
-  )
-}
 
 
 export default function App() {
