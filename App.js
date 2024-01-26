@@ -8,11 +8,24 @@ import HomeScreen from "./src/HomeScreen";
 import MapScreen from "./src/MapScreen";
 import SavedScreen from "./src/SavedScreen";
 import SettingsScreen from "./src/SettingsScreen";
+import InfoScreen from "./src/InfoScreen";
 
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
+function HomeStack() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false
+      }}
+    >
+      <Stack.Screen name="Initial" component={HomeScreen} />
+      <Stack.Screen name="Info" component={InfoScreen} />
+    </Stack.Navigator>
+  )
+}
 
 
 export default function App() {
