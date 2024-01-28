@@ -1,5 +1,5 @@
-import React from "react";
-import { StyleSheet, Text, View, SafeAreaView, Image, Platform, TextInput } from 'react-native';
+import React, { useState } from "react";
+import { StyleSheet, Text, View, SafeAreaView, Image, Platform, TextInput, ScrollView } from 'react-native';
 
 //  Assets
 const menu = require("./assets/icons/menu.png");
@@ -8,12 +8,24 @@ const magnifying_glass = require("./assets/icons/magnifying-glass.png");
 
 // Car Assets
 const image_V_1 = require("./assets/vehicles/v-1.png");
-const image_V_2 = require("./assets/vehicles/v-3.png");
+const image_V_2 = require("./assets/vehicles/v-2.png");
 const image_V_3 = require("./assets/vehicles/v-3.png");
 const image_V_4 = require("./assets/vehicles/v-4.png");
 
+// Vehicle Data
+import data from "./dataset/vehicles.json";
+
 
 const HomeScreen = () => {
+
+    const [ vehicles, setVehicles ] = useState(data.vehicles);
+    const getImage = (id) => {
+        if (id == 1) return image_V_1
+        if (id == 2) return image_V_2
+        if (id == 3) return image_V_3
+        if (id == 4) return image_V_4
+    }
+
     return (
       <SafeAreaView style={styles.SafeArea}>
         <View style={styles.container}>
@@ -58,19 +70,34 @@ const HomeScreen = () => {
             {/* List Section */}
             <View style={styles.listSection}>
                 <Text style={styles.headText}>Most Rented</Text>
+                <ScrollView style={styles.elementPallet}>
 
-                <View style={styles.elementPallet}>
-                    <View style={styles.element}>
-                        <Text style={styles.infoArea}></Text>
-                        <Text style={styles.infoArea}></Text>
-                        <Text style={styles.infoArea}>
-                            <Text style={styles.infoArea}></Text>
-                        </Text>
-                    </View>
-                    <View>
-                        <Image source={image_V_1} resizeMode="contain" style={styles.vehicleImage} />
-                    </View>
-                </View>
+                    {
+                        vehicles.map(vehicle => {
+                            return (
+                                <View style={styles.element} key={vehicle.id} >
+                                    <View style={styles.infoArea}>
+                                        <Text style={styles.infoTitle}>{vehicle.make} {vehicle.model} </Text>
+                                        <Text style={styles.infoSub}>{vehicle.type} {vehicle.transmission}</Text>
+                                        <Text style={styles.infoPrice}>
+                                            <Text style={styles.infoAmount}>${vehicle.price_per_day}</Text>/day
+                                        </Text>
+                                    </View>
+                                    <View style={styles.imageArea}>
+                                        <Image 
+                                            source={getImage(vehicle.id)} 
+                                            resizeMode="contain" 
+                                            style={styles.vehicleImage} 
+                                        />
+                                    </View>
+                                </View>
+                            );
+                        })
+                    }
+                    
+
+
+                </ScrollView>
             </View>
         </View>
       </SafeAreaView>
@@ -149,12 +176,66 @@ const HomeScreen = () => {
         fontSize: 15,
         marginRight: 20,
         fontWeight: 'bold',
-        color: '900',
     },
     typesText: {
         fontSize: 15,
         marginRight: 28,
         fontWeight: '400',
         color: '#696969'
-    }
+    },
+    listSection: {
+        marginTop: 15,
+    },
+    headText: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginBottom: 10,
+    },
+    elementPallet: {
+        width: '100%',
+        height: 480,
+        // backgroundColor: 'red',
+    },
+    element: {
+        marginBottom: 20,
+        height: 100,
+        padding: 13,
+        borderRadius: 10,
+        backgroundColor: 'white',
+        flexDirection: 'row'
+    },
+    infoArea: {
+        flex: 1,
+    },
+    infoTitle: {
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
+    infoSub: {
+        fontSize: 12,
+        fontWeight: '600',
+        color: '#696969',
+    },
+    infoPrice: {
+        position: 'absolute',
+        bottom: 0,
+        fontSize: 10,
+        color: '#696969',
+        fontWeight: 'bold'
+    },
+    infoAmount: {
+        fontSize: 12,
+        color: 'black',
+        fontWeight: '600',
+    },
+    imageArea: {
+        flex: 1,
+    },
+    vehicleImage: {
+        position: 'absolute',
+        top: -8,
+        left: -15,
+        width: '120%',
+        height: '120%'
+    },
   })
