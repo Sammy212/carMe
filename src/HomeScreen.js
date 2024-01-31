@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, SafeAreaView, Image, Platform, TextInput, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, Image, Platform, TextInput, ScrollView, TouchableOpacity } from 'react-native';
 
 //  Assets
 const menu = require("./assets/icons/menu.png");
@@ -11,13 +11,12 @@ const image_V_1 = require("./assets/vehicles/v-1.png");
 const image_V_2 = require("./assets/vehicles/v-2.png");
 const image_V_3 = require("./assets/vehicles/v-3.png");
 const image_V_4 = require("./assets/vehicles/v-4.png");
-const image_V_5 = require("./assets/vehicles/v-2.png");
 
 // Vehicle Data
 import data from "./dataset/vehicles.json";
 
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
 
     const [ vehicles, setVehicles ] = useState(data.vehicles);
     const [ filteredVehicles, setFilteredVehicles ] = useState(data.vehicles);
@@ -91,7 +90,12 @@ const HomeScreen = () => {
                     {
                         filteredVehicles.map(vehicle => {
                             return (
-                                <View style={styles.element} key={vehicle.id} >
+                                <TouchableOpacity 
+                                    style={styles.element} 
+                                    key={vehicle.id} 
+                                    activeOpacity={0.8}
+                                    onPress={() => navigation.navigate('Info', { id: vehicle.id })}
+                                >
                                     <View style={styles.infoArea}>
                                         <Text style={styles.infoTitle}>{vehicle.make} {vehicle.model} </Text>
                                         <Text style={styles.infoSub}>{vehicle.type} {vehicle.transmission}</Text>
@@ -106,7 +110,7 @@ const HomeScreen = () => {
                                             style={styles.vehicleImage} 
                                         />
                                     </View>
-                                </View>
+                                </TouchableOpacity>
                             );
                         })
                     }
