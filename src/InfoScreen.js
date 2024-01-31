@@ -64,6 +64,13 @@ const InfoScreen = ({ route }) => {
               <Text style={styles.typetranText}>{ vehicle.type } - { vehicle.transmission }</Text>
           </View>
 
+          <Text style={styles.description}>{vehicle.description}</Text>
+          <Text style={styles.proprtiesText}>Properties</Text>
+        </View>
+
+        <View>
+          <View></View>
+          <View> </View>
         </View>
       </SafeAreaView>
     )
@@ -135,5 +142,20 @@ const InfoScreen = ({ route }) => {
         color: '#696969',
         fontWeight: '600',
         fontSize: 12,
+      },
+
+      description: {
+        marginTop: 20,
+        // fontSize: 15,
+        color: '#696969',
+        lineHeight: 20,
+        letterSpacing: 0.1,
+        fontWeight: '600',
+      },
+      proprtiesText: {
+        marginTop: 30,
+        fontSize: 20,
+        fontWeight: "500",
+
       },
   })
