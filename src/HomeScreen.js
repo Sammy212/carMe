@@ -11,6 +11,7 @@ const image_V_1 = require("./assets/vehicles/v-1.png");
 const image_V_2 = require("./assets/vehicles/v-2.png");
 const image_V_3 = require("./assets/vehicles/v-3.png");
 const image_V_4 = require("./assets/vehicles/v-4.png");
+const image_V_5 = require("./assets/vehicles/v-2.png");
 
 // Vehicle Data
 import data from "./dataset/vehicles.json";
@@ -19,11 +20,25 @@ import data from "./dataset/vehicles.json";
 const HomeScreen = () => {
 
     const [ vehicles, setVehicles ] = useState(data.vehicles);
+    const [ filteredVehicles, setFilteredVehicles ] = useState(data.vehicles);
+
     const getImage = (id) => {
         if (id == 1) return image_V_1
         if (id == 2) return image_V_2
         if (id == 3) return image_V_3
         if (id == 4) return image_V_4
+    }
+
+    const searchVehicles = (keyword) => {
+        
+        const lowerCasedKeyword = keyword.toLowerCase();
+
+        const results = vehicles.filter(vehicle => {
+            return vehicle.make.toLowerCase().includes(lowerCasedKeyword);
+        })
+
+
+        setFilteredVehicles(results);
     }
 
     return (
@@ -47,6 +62,7 @@ const HomeScreen = () => {
                     <TextInput 
                         style={styles.searchInput}
                         placeholder="Search for a Car"
+                        onChangeText={(text) => searchVehicles(text)}
                     />
                     <View style={styles.searchIconArea}>
                         <Image 
@@ -73,7 +89,7 @@ const HomeScreen = () => {
                 <ScrollView style={styles.elementPallet}>
 
                     {
-                        vehicles.map(vehicle => {
+                        filteredVehicles.map(vehicle => {
                             return (
                                 <View style={styles.element} key={vehicle.id} >
                                     <View style={styles.infoArea}>
@@ -95,8 +111,6 @@ const HomeScreen = () => {
                         })
                     }
                     
-
-
                 </ScrollView>
             </View>
         </View>
@@ -193,7 +207,7 @@ const HomeScreen = () => {
     },
     elementPallet: {
         width: '100%',
-        height: 480,
+        height: 450,
         // backgroundColor: 'red',
     },
     element: {
