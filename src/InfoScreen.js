@@ -66,12 +66,49 @@ const InfoScreen = ({ route }) => {
 
           <Text style={styles.description}>{vehicle.description}</Text>
           <Text style={styles.proprtiesText}>Properties</Text>
-        </View>
+          
+          <View style={styles.propertiesArea}>
+            <View style={styles.level}>
 
-        <View>
-          <View></View>
-          <View> </View>
-        </View>
+              <Text style={styles.propertyText}>
+                Motor power:
+                <Text style={styles.valueText}>
+                  {" "}
+                  {vehicle.properties.motor_power_hp} hp
+                </Text>
+              </Text>
+
+              <Text style={styles.propertyText}>
+                Engine capacity:
+                <Text style={styles.valueText}>
+                  {" "}
+                  {vehicle.properties.engine_capacity_cc} cc
+                </Text>
+              </Text>
+
+            </View>
+
+
+          <View style={styles.level}>
+            <Text style={styles.propertyText}>
+              Fuel:
+              <Text style={styles.valueText}>
+                {" "}
+                {vehicle.properties.fuel_type}
+              </Text>
+            </Text>
+
+            <Text style={styles.propertyText}>
+              Traction:
+              <Text style={styles.valueText}>
+                {" "}
+                {vehicle.properties.traction}
+              </Text>
+            </Text>
+          </View>
+        </View>   
+
+        </View> 
       </SafeAreaView>
     )
   }
@@ -146,7 +183,6 @@ const InfoScreen = ({ route }) => {
 
       description: {
         marginTop: 20,
-        // fontSize: 15,
         color: '#696969',
         lineHeight: 20,
         letterSpacing: 0.1,
@@ -156,6 +192,35 @@ const InfoScreen = ({ route }) => {
         marginTop: 30,
         fontSize: 20,
         fontWeight: "500",
-
+      },
+      propertiesArea: {
+        marginTop: 20,
+        flexDirection: "row",
+        justifyContent: "flex-start",
+      },
+      level: {
+        marginRight: 30,
+      },
+      propertyText: {
+        fontSize: 12,
+        color: "#696969",
+      },
+      valueText: {
+        fontSize: 12,
+        color: "black",
+      },
+      rentButton: {
+        marginTop: 50,
+        height: 40,
+        alignSelf: "center",
+        width: 250,
+        backgroundColor: "black",
+        borderRadius: 8,
+        justifyContent: "center",
+        alignItems: "center",
+      },
+      rentButtonText: {
+        color: "white",
+        fontWeight: "500",
       },
   })
