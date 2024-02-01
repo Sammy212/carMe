@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, SafeAreaView, Image, Platform } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, Image, Platform, TouchableOpacity } from 'react-native';
 
 //  Assets
 const back = require("./assets/icons/left-arrow.png");
@@ -14,7 +14,7 @@ const image_V_3 = require("./assets/vehicles/v-3.png");
 const image_V_4 = require("./assets/vehicles/v-4.png");
 
 
-const InfoScreen = ({ route }) => {
+const InfoScreen = ({ route, navigation }) => {
 
     const vehicle = data.vehicles.filter(
       (element) => element.id == route.params.id
@@ -33,11 +33,15 @@ const InfoScreen = ({ route }) => {
 
           {/* Header Section */}
           <View style={styles.headerSection}>
-                <Image 
-                  source={back} 
-                  resizeMode="contain" 
-                  style={styles.menuIconStyle}
-                />
+                <TouchableOpacity
+                  onPress={() => navigation.goBack() }
+                >
+                  <Image 
+                    source={back} 
+                    resizeMode="contain" 
+                    style={styles.menuIconStyle}
+                  />
+                </TouchableOpacity>
                 <Text style={styles.HeaderText}>Details</Text>
                 <Image 
                   source={dots} 
@@ -59,7 +63,7 @@ const InfoScreen = ({ route }) => {
           <View style={styles.headSection}>
             <View style={styles.topTextArea}>
               <Text style={styles.makemodelText}>{ vehicle.make } {vehicle.model}</Text>
-              <Text style={styles.price}><Text style={styles.amount}>${ vehicle.price_per_day }</Text> /day</Text>
+              <Text style={styles.price}><Text style={styles.amount}>₦{ vehicle.price_per_day },000</Text> /day</Text>
             </View>
               <Text style={styles.typetranText}>{ vehicle.type } - { vehicle.transmission }</Text>
           </View>
@@ -88,7 +92,7 @@ const InfoScreen = ({ route }) => {
 
             </View>
 
-
+          {/* Properties of the Vehicle */}
           <View style={styles.level}>
             <Text style={styles.propertyText}>
               Fuel:
@@ -106,7 +110,12 @@ const InfoScreen = ({ route }) => {
               </Text>
             </Text>
           </View>
-        </View>   
+        </View>
+
+        {/* call to action */}
+        <TouchableOpacity style={styles.rentButton}>
+          <Text style={styles.rentButtonText}>Rent Now</Text>
+        </TouchableOpacity>
 
         </View> 
       </SafeAreaView>
@@ -151,6 +160,9 @@ const InfoScreen = ({ route }) => {
         height: 300,
         justifyContent: "center",
         alignItems: "center",
+        ...Platform.select({
+          android: {marginTop: -56,}
+      }),
       },
       vehicleImage: {
         width: 300,

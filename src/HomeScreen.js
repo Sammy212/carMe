@@ -100,7 +100,7 @@ const HomeScreen = ({ navigation }) => {
                                         <Text style={styles.infoTitle}>{vehicle.make} {vehicle.model} </Text>
                                         <Text style={styles.infoSub}>{vehicle.type} {vehicle.transmission}</Text>
                                         <Text style={styles.infoPrice}>
-                                            <Text style={styles.infoAmount}>${vehicle.price_per_day}</Text>/day
+                                            <Text style={styles.infoAmount}>₦{vehicle.price_per_day},000</Text>/day
                                         </Text>
                                     </View>
                                     <View style={styles.imageArea}>
